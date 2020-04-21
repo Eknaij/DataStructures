@@ -1,0 +1,6 @@
+.vs
+packages
+crm.sln
+*.config
+*.idea
+*.iml
