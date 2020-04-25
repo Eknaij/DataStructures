@@ -65,4 +65,10 @@ public class CircleArray {
         }
         return arr[front];
     }
+
+    public int Rear() {
+        if(isEmpty())
+            return -1;
+        return arr[(rear - 1 + maxSize) % maxSize];
+    }
 }
