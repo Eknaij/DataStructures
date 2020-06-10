@@ -34,6 +34,7 @@ public class CircleArray {
             return;
         }
         arr[rear] = n;
+        //当rear指针在数组末端时，如果不取模数组会越界，因此要进行取模运算
         rear = (rear + 1) % maxSize;
     }
 
@@ -43,6 +44,7 @@ public class CircleArray {
             throw new RuntimeException("队空，不可出队");
         }
         int value = arr[front];
+        //front有可能移动到数组末端，因此考虑取模
         front = (front + 1) % maxSize;
         return value;
     }
@@ -54,8 +56,14 @@ public class CircleArray {
             System.out.println("队空,无数据");
             return;
         }
+        //从front开始遍历，直到rear指针结束
         for (int i = front; i < front + (rear + maxSize - front) % maxSize; i++)
-            System.out.printf("arr[%d]=%d\n", i % maxSize, arr[i % maxSize]);
+            System.out.printf("arr[%d]=%d\n", i % maxSize, arr[i % maxSize]);//由于是环形，由于i=front开始，有可能在数组末端，因此i需要进行取模
+    }
+
+    //数组有效个数
+    public int size() {
+        return (rear + maxSize - front) % maxSize;
     }
 
     //显示队列的头数据， 注意不是取出数据
@@ -67,7 +75,7 @@ public class CircleArray {
     }
 
     public int Rear() {
-        if(isEmpty())
+        if (isEmpty())
             return -1;
         return arr[(rear - 1 + maxSize) % maxSize];
     }
