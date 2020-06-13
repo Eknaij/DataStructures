@@ -63,5 +63,27 @@ public class LinkedListTest {
         singleLinkedList2.add(singleLinkedList.Merge(testMeger1.getHead(),testMeger2.getHead()));
         singleLinkedList2.show();
 
+        System.out.println("双向链表测试");
+
+        StuNode2 demoNode22 = new StuNode2(20, "小华");
+        StuNode2 demoNode23 = new StuNode2(21, "小红");
+        StuNode2 demoNode24 = new StuNode2(22, "小王");
+        StuNode2 demoNode25 = new StuNode2(23, "小黄~~~");
+        StuNode2 demoNode26 = new StuNode2(24, "黄小~~~");
+        DoubleLinkedList doubleLinkedList = new DoubleLinkedList();
+        doubleLinkedList.add(demoNode22);
+        doubleLinkedList.add(demoNode23);
+        doubleLinkedList.add(demoNode24);
+        doubleLinkedList.add(demoNode25);
+        doubleLinkedList.add(demoNode26);
+        System.out.println("显示双向链表");
+        doubleLinkedList.show();
+        StuNode2 demoNode27 = new StuNode2(24, "~~~");
+        doubleLinkedList.update(demoNode27);
+        System.out.println("双向链表修改后");
+        doubleLinkedList.show();
+        System.out.println("双向链表删除后");
+        doubleLinkedList.delete(demoNode26);
+        doubleLinkedList.show();
     }
 }
