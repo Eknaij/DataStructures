@@ -11,7 +11,7 @@ public class Josepfu {
         CircleSingleLinkekList circleSingleLinkekList = new CircleSingleLinkekList();
         circleSingleLinkekList.addNode(5);
         circleSingleLinkekList.showNode();
-        circleSingleLinkekList.out(1,2,5);
+        circleSingleLinkekList.out(1, 2, 5);
 
     }
 }
@@ -74,7 +74,7 @@ class CircleSingleLinkekList {
             }
             cur = cur.getNext();
         }
-        //开始前前先移动到k-1处
+        //开始前两个指针先移动到k-1处,因为从k出开始报数
         for (int i = 0; i < k - 1; i++) {
             first = first.getNext();
             cur = cur.getNext();
@@ -82,16 +82,16 @@ class CircleSingleLinkekList {
         while (true) {
             if (cur == first)//只剩一个
                 break;
-            //first和cur同时移动m-1次
+            //first和cur同时移动m-1次，模拟报数过程，循环结束报数完毕，first就是要出队的编号
             for (int i = 0; i < m - 1; i++) {
                 first = first.getNext();
                 cur = cur.getNext();
             }
-            System.out.println("移除节点："+first.getNo());
-            first = first.getNext();
-            cur.setNext(first);
+            System.out.println("移除节点：" + first.getNo());//模拟出队
+            first = first.getNext();    //移动到下一个人，继续报数
+            cur.setNext(first); //cur指针始终紧邻first
         }
-        System.out.println("最后的节点为："+first.getNo());
+        System.out.println("最后的节点为：" + first.getNo());
     }
 }
 

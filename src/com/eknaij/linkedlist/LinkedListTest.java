@@ -37,7 +37,11 @@ public class LinkedListTest {
         System.out.println("反转后");
         singleLinkedList.show();
         System.out.println("逆序打印");
+        System.out.println("运用栈的特性");
         singleLinkedList.reverseShow(singleLinkedList.getHead());
+        //递归方式
+        System.out.println("递归方式");
+        singleLinkedList.reverseShow2(singleLinkedList.getHead());
 
 
         System.out.println("合并两个链表");

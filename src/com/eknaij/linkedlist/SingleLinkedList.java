@@ -145,6 +145,29 @@ public class SingleLinkedList {
         return node;
     }
 
+    //方法2
+    public StuNode FindKthToTail(StuNode head, int index) {
+        if (head == null || index <= 0) {
+            return null;
+        }
+        //定义两个指针
+        StuNode p1 = head;
+        StuNode p2 = head;
+        //P2先走k-1的距离，这时候p1与p2之间间隔为k-1
+        for (; index > 1; index--) {
+            if (p2.next != null)
+                p2 = p2.next;
+            else
+                return null;
+        }
+        //p2与p1一起走，当p2走到head的终点时，由于p2与p1之间为k，所以当前p1的结点就是所求
+        while (p2.next != null) {
+            p1 = p1.next;
+            p2 = p2.next;
+        }
+        return p1;
+    }
+
     /**
      * 将链表进行反转,头插入法
      *
@@ -153,16 +176,19 @@ public class SingleLinkedList {
     public void reverse(StuNode head) {
         if (head.next == null)
             return;
+        //新的单链表，也是反转之后的链表
         StuNode reverseHead = new StuNode(0, "");
+        //一个临时指针变量，用来遍历原链表
         StuNode temp = head.next;
+        //记录原链表的下一个位置
         StuNode next;
         while (temp != null) {
-            next = temp.next;
-            temp.next = reverseHead.next;
-            reverseHead.next = temp;
-            temp = next;
+            next = temp.next;   //先将原链表的下一个记录下来，因为接下来需要操作temp
+            temp.next = reverseHead.next;   //将原链表的节点的next域，指向反转链表的第一个节点，
+            reverseHead.next = temp;    //反转链表的第一个节点是原链表的节点
+            temp = next;    //指针后移，继续遍历原链表
         }
-        head.next = reverseHead.next;
+        head.next = reverseHead.next;   //这一步是将原链表改为反转之后的链表
     }
 
     /**
@@ -185,9 +211,16 @@ public class SingleLinkedList {
             System.out.println(stack.pop());
 
     }
+    //用递归的方式逆序输出
+    public void reverseShow2(StuNode head) {
+        if (head.next != null)
+            reverseShow2(head.next);
+        System.out.println(head);
+    }
 
     /**
      * 合并两个有序链表，合并后依然有序
+     *
      * @param list1
      * @param list2
      * @return 合并后链表的头结点
@@ -199,17 +232,22 @@ public class SingleLinkedList {
             return list1;
         if (list2.next == null && list1.next == null)
             return null;
+        //定义一个新链表
         StuNode head = new StuNode(0, "");
         head.next = null;
         StuNode root = head;
+        //循环两个链表
         while (list1.next != null && list2.next != null) {
+            //比较两个链表的值，小的就插入到新的链表中
             if (list1.next.no < list2.next.no) {
                 head.next = list1.next;
                 head = list1.next;
+                //list1后移
                 list1.next = list1.next.next;
             } else {
                 head.next = list2.next;
                 head = list2.next;
+                //list2后移
                 list2.next = list2.next.next;
             }
         }
